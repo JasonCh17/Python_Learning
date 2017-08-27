@@ -8,7 +8,7 @@
 # for i in example_list:
 #      print(i)
 #      print('inner of for')
-# #  print('outer of for')
+#      print('outer of for')
 #
 # for i in range(1,10,2):
 #     print(i)
@@ -59,7 +59,7 @@
 # # print(content)
 # content_list=file.readlines()
 # print(content_list)
-
+#
 # class Calculator:
 #     name='Good calculator'
 #     price=18
@@ -79,8 +79,8 @@
 # calcul=Calculator()
 # print(calcul.name)
 # print(calcul.price)
-
-
+#
+#
 # a_input=input('please give a number:')
 # print('This input number is:',a_input)
 # if a_input =='1':
@@ -112,6 +112,76 @@ print(new_ticks)
 
 plt.xticks(new_ticks)
 plt.yticks([-2,-1.8,-1,1.22,3],
-        [r'$really\ bad $',r'$bad\ \alpha$',r'$normal$',r'$good$','$really\ good$'])
+	[r'$really\ bad $',r'$bad\ \alpha$',r'$normal$',r'$good$','$really\ good$'])
 
 plt.show()
+
+
+#散点图
+import matplotlib.pyplot as plt
+import numpy as np
+n=1024
+X=np.random.normal(0,1,n)
+Y=np.random.normal(0,1,n)
+T=np.arctan2(Y,X)  #corlor
+
+plt.scatter(X,Y,s=75,c=T,alpha=0.2)
+plt.xlim((-1.5,1.5))
+plt.ylim((-1.5,1.5))
+plt.show()
+
+#柱状图
+#等高线
+import matplotlib.pyplot as plt
+import numpy as np
+def f(x,y):
+    return(1-x/2+x**5+y**3)*np.exp(-x**2-y**2)
+n=256
+x=np.linspace(-3,3,n)
+y=np.linspace(-3,3,n)
+X,Y=np.meshgrid(x,y)
+
+
+plt.contourf(X,Y,f(X,Y),8,alpha=0.75,cmap='hot')  #热度图
+C=plt.contour(X,Y,f(X,Y),8,colors='black',linewidth=.5) #等高线
+plt.clabel(C,inline=True,fontsize=10) #等高线label
+plt.show()
+
+#打印图像
+#3D图
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+fig=plt.figure()
+ax=Axes3D(fig)
+
+X=np.arange(-4,4,0.25)
+Y=np.arange(-4,4,0.25)
+X,Y=np.meshgrid(X,Y)
+R=np.sqrt(X**2+Y**2)
+Z=np.sin(R)
+
+ax.plot_surface(X,Y,Z,rstride=1,cstride=1,cmap='rainbow')
+ax.contourf(X,Y,Z,zdir='z',offset=-2,cmap='rainbow')
+ax.set_zlim(-2,2)
+
+
+plt.show()
+
+#子图(复杂)
+import matplotlib.pyplot as plt
+plt.figure()
+plt.subplot(2,2,1)
+plt.plot([0,1],[0,1])
+
+plt.subplot(2,2,2)
+plt.plot([0,1],[0,1])
+
+plt.subplot(223)
+plt.plot([0,1],[0,1])
+
+plt.subplot(224)
+plt.plot([0,1],[0,1])
+plt.show()
+
+
