@@ -1,7 +1,7 @@
 #网格搜索穷举式超参数优化方法
 from sklearn import svm,datasets
 from sklearn.model_selection import GridSearchCV
-iris=datatasets.load_iris()
+iris=datasets.load_iris()
 #定义网格参数
 parameters={'kernel':('rbf','linear'),
 'C':[1,5,10]}
